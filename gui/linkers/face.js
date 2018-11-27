@@ -1,7 +1,7 @@
 function detect_faces() {
 
   document.getElementById("detect").value = "Hang on..."
-  var python = require("python-shell")
+  var {PythonShell} = require("python-shell")
   var path = require("path")
 
     var options = {
@@ -9,7 +9,7 @@ function detect_faces() {
     pythonPath : '/usr/local/bin/python3'
   }
 
-  var face = new python("faces.py", options);
+  var face = new PythonShell("faces.py", options);
 
   face.end(function(err, code, message) {
     document.getElementById("detect").value = "Detect faces";
@@ -19,7 +19,7 @@ function detect_faces() {
 
 
 function add_face(){
-  var python = require("python-shell")
+  var {PythonShell} = require("python-shell")
   var path = require("path")
   var name = document.getElementById("person").value
 
@@ -29,7 +29,7 @@ function add_face(){
     args : ["cam", name]
   }
 
-  var face = new python("add_face.py", options);
+  var face = new PythonShell("add_face.py", options);
 
   face.end(function(err, code, message) {
     swal("Face added!", "We can now recognize your face", "success")

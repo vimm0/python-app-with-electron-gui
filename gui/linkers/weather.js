@@ -1,5 +1,5 @@
 function get_weather() {
-  var python = require("python-shell")
+  var {PythonShell}  = require("python-shell")
   var path = require("path")
 
   var city = document.getElementById("city").value
@@ -10,8 +10,7 @@ function get_weather() {
     args : [city]
   }
 
-  var weather = new python('weather_engine.py', options);
-
+  var weather = new PythonShell('weather_engine.py', options);
   weather.on('message', function(message) {
     swal(message);
   })
